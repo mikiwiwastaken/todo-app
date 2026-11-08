@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="todo-container">
+      <div class="todo-header">
+        <select id="filterSelect">
+          <option value="all">All tasks</option>
+          <option value="active">Active</option>
+          <option value="completed">Completed</option>
+        </select>
+
+        <p id="taskStatus"><span>0</span> tasks done</p>
+      </div>
+
+      <ul id="todo-list"></ul>
+
+      <div class="todo-input">
+        <input type="text" id="newItem" placeholder="Add a new task..." />
+
+        <button id="addBtn" title="Add item">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+
+        <button id="clearCompletedBtn" title="Clear completed">
+          <i class="fa-solid fa-broom"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast error">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span id="toastMessage">Something went wrong!</span>
+      <button id="closeToast">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
