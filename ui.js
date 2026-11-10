@@ -49,30 +49,3 @@ export function render(todos, list, status, editingId) {
 export function updateTasksDone(todos, tasksDone) {
   tasksDone.textContent = todos.filter((todo) => todo.completed).length;
 }
-
-export function saveTodos(todos) {
-  localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-export function loadTodos(toast, toastMessage) {
-  try {
-    const todos = JSON.parse(localStorage.getItem("todos"));
-    return Array.isArray(todos) ? todos : null;
-  } catch (error) {
-    toast.classList.add("show");
-    toastMessage.textContent = `Could not read storage: ${error.message}`;
-    return null;
-  }
-}
-
-export async function fetchTodos() {
-  const response = await fetch(
-    "https://jsonplaceholder.typicode.com/todos?_limit=5",
-  );
-
-  if (!response.ok) {
-    throw new Error(`HTTP error: ${response.status}`);
-  }
-
-  return response.json();
-}

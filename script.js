@@ -1,10 +1,6 @@
-import {
-  render,
-  updateTasksDone,
-  saveTodos,
-  loadTodos,
-  fetchTodos,
-} from "./todo.js";
+import { render, updateTasksDone } from "./ui.js";
+import { saveTodos, loadTodos } from "./storage.js";
+import { fetchTodos } from "./todo-api.js";
 
 const list = document.getElementById("todo-list");
 const addBtn = document.getElementById("addBtn");
@@ -132,9 +128,16 @@ function commitPendingEdit() {
 }
 
 async function init() {
-  try {
-    let tempTodos = loadTodos(toast, toastMessage);
+  let tempTodos;
 
+  try {
+    tempTodos = loadTodos();
+  } catch (error) {
+    toast.classList.add("show");
+    toastMessage.textContent = `Could not read storage: ${error.message}`;
+  }
+
+  try {
     if (!tempTodos) {
       const fetched = await fetchTodos();
       tempTodos = fetched.map((todo) => ({
